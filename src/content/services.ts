@@ -19,10 +19,10 @@ export const services: readonly Service[] = [
   {
     id: "campaigns",
     image: {
-      src: "/images/service-campaigns.png",
-      alt: "Studio lighting set up around a paper backdrop for a content shoot",
-      width: 1200,
-      height: 900,
+      src: "/images/service-campaigns.jpg",
+      alt: "A marketing professional working on a laptop displaying a campaign performance dashboard and social media creatives",
+      width: 1024,
+      height: 1024,
     },
     summary:
       "I design and manage advertising campaigns that run over months, ensuring businesses achieve their marketing objectives and effectively reach their target audience.",
@@ -34,10 +34,10 @@ export const services: readonly Service[] = [
     id: "strategy",
     statement: "Let's bring your vision to life",
     image: {
-      src: "/images/service-strategy.png",
-      alt: "Glass towers seen from below, captioned Let's bring your vision to life",
-      width: 1200,
-      height: 900,
+      src: "/images/service-strategy.jpg",
+      alt: "A sleek whiteboard with a strategic marketing funnel diagram and business goals mapped out",
+      width: 1024,
+      height: 1024,
     },
     summary:
       "Every successful brand or sales growth plan starts with a well-structured strategy. I create tailored marketing plans that guide businesses toward achieving their goals efficiently.",
@@ -48,10 +48,10 @@ export const services: readonly Service[] = [
   {
     id: "training",
     image: {
-      src: "/images/service-training.png",
-      alt: "Graphic reading Let's do something amazing together",
-      width: 1200,
-      height: 900,
+      src: "/images/service-training.jpg",
+      alt: "A person taking notes in front of a laptop showing an online digital marketing course",
+      width: 1024,
+      height: 1024,
     },
     summary:
       "I offer online marketing courses, including a recorded channel with multiple in-depth lessons on marketing strategies. Additionally, I provide personalised one-on-one training for individuals looking to enhance their marketing skills.",
@@ -62,10 +62,10 @@ export const services: readonly Service[] = [
   {
     id: "consulting",
     image: {
-      src: "/images/service-consulting.png",
-      alt: "A screen of performance charts during a meeting",
-      width: 1200,
-      height: 900,
+      src: "/images/service-consulting.jpg",
+      alt: "Two professionals discussing business plans at a sleek wooden table during a consultation",
+      width: 1024,
+      height: 1024,
     },
     summary:
       "I provide expert marketing consultations for businesses and entrepreneurs, helping them identify solutions to overcome challenges, increase sales, and build a strong brand presence.",

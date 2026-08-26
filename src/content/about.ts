@@ -32,10 +32,10 @@ export const about: About = {
     title: "Why Choose ME",
     body: "I specialize in developing strategic marketing plans, launching successful advertising campaigns, and providing tailored consultancy to startups and business owners. My vision is to empower entrepreneurs with innovative and proven marketing strategies to help them achieve sustainable success.",
     image: {
-      src: "/images/about-why.png",
-      alt: "Abstract artwork in violet and red",
-      width: 1800,
-      height: 1000,
+      src: "/images/about-why.jpg",
+      alt: "A sleek modern office desk with a tablet displaying upward growth charts and strategic plans",
+      width: 1376,
+      height: 768,
     },
   },
 };
