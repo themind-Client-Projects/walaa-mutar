@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/**
+ * Design tokens.
+ *
+ * Everything visual on the site resolves to one of these, so the palette and
+ * type stack can be re-pointed here without touching a component.
+ */
+@theme {
+  --color-ink: #0a0a0a;
+  --color-paper: #ffffff;
+  --color-muted: #6f6f6f;
+  --color-line: #e6e6e6;
+  --color-surface: #f2f1ef;
+  --color-accent: #6d11f5;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-arabic: var(--font-arabic), var(--font-inter), ui-sans-serif, sans-serif;
+
+  /*
+   * Headings rise word by word on a CSS animation rather than on GSAP's ticker.
+   * CSS animations advance on wall-clock time, so a heading that starts while
+   * the tab is in the background still finishes; `requestAnimationFrame` — and
+   * so every JavaScript tween — is paused there and would freeze mid-rise.
+   *
+   * `backwards` fill is what makes the resting state the *finished* one: the
+   * word only sits hidden during the animation's delay, so if the animation
+   * never runs at all, the text is simply visible.
+   */
+  --animate-word-rise: word-rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+
+  @keyframes word-rise {
+    from {
+      transform: translateY(110%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* Arabic testimonial copy reads right to left in its own type stack. */
+  [dir="rtl"] {
+    font-family: var(--font-arabic);
+  }
+
+  /**
+   * Reveal blocks start hidden in CSS so the first painted frame already
+   * matches where the animation begins — no flash of finished layout before
+   * hydration. `Reveal` hands control back to GSAP on mount.
+   */
+  [data-reveal] {
+    opacity: 0;
+  }
+
+  /*
+   * Only a heading still waiting to be scrolled to is held hidden. Once it
+   * plays, the hidden start comes from the animation's `backwards` fill — so a
+   * word's resting state is always the visible one.
+   */
+  [data-word][data-phase="pending"] {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal],
+    [data-word] {
+      opacity: 1;
+    }
+
+    [data-word] {
+      animation: none;
+      transform: none;
+    }
+  }
+}
