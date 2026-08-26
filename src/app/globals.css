@@ -17,7 +17,6 @@
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
-  --font-arabic: var(--font-arabic), var(--font-inter), ui-sans-serif, sans-serif;
 
   /*
    * Headings rise word by word on a CSS animation rather than on GSAP's ticker.
@@ -58,11 +57,6 @@
   ::selection {
     background-color: var(--color-ink);
     color: var(--color-paper);
-  }
-
-  /* Arabic testimonial copy reads right to left in its own type stack. */
-  [dir="rtl"] {
-    font-family: var(--font-arabic);
   }
 
   /**
