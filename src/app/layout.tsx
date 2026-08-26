@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
 import { profile } from "@/content/site";
+import { SITE_URL } from "@/lib/site-url";
 
 import "./globals.css";
 
@@ -22,14 +23,58 @@ const arabic = IBM_Plex_Sans_Arabic({
 });
 
 const name = profile.displayName.join(" ");
+const role = "Marketing Consultant & Digital Marketing Trainer";
+
+/**
+ * The share card. Every page inherits it unless it names its own, so a link to
+ * any corner of the site still previews as something rather than as a bare URL.
+ * `hero.jpg` is 1920x1080 — comfortably over the 600px minimum the platforms
+ * want, and close enough to their 1.91:1 preference to avoid an awkward crop.
+ */
+const socialImage = {
+  url: profile.portrait.src,
+  width: profile.portrait.width,
+  height: profile.portrait.height,
+  alt: `${name} — ${role}`,
+};
 
 export const metadata: Metadata = {
-  title: `${name} — Marketing Consultant & Digital Marketing Trainer`,
+  // Absolute URLs are built from here, so relative paths below are enough.
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${name} — ${role}`,
+    // Pages give a short title; the name is appended for them.
+    template: `%s — ${name}`,
+  },
   description: profile.intro,
+  applicationName: name,
+  authors: [{ name }],
+  creator: name,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: name,
+    type: "website",
+    siteName: name,
+    locale: "en_US",
+    url: "/",
+    title: `${name} — ${role}`,
     description: profile.intro,
-    type: "profile",
+    images: [socialImage],
+  },
+  twitter: {
+    // Card type only. X falls back to the `og:` tags for title, description
+    // and image, so declaring them here as well would pin every page to the
+    // home page's copy — a course link would preview as the home page.
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

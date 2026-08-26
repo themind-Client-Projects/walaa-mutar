@@ -15,15 +15,27 @@ export async function generateMetadata({
   const { slug } = await params;
   const course = getCourseBySlug(slug);
 
-  if (!course) return {};
+  // A missing course renders `notFound()`, so its metadata is never used —
+  // but a title beats Next's untitled fallback if one ever slips through.
+  if (!course) return { title: "Course not found" };
 
   return {
-    title: `${course.title} — Walaa Mutar`,
+    title: course.title,
     description: course.summary,
+    alternates: { canonical: `/courses/${course.slug}` },
     openGraph: {
+      type: "article",
+      url: `/courses/${course.slug}`,
       title: course.title,
       description: course.summary,
-      images: [course.image.src],
+      images: [
+        {
+          url: course.image.src,
+          width: course.image.width,
+          height: course.image.height,
+          alt: course.image.alt,
+        },
+      ],
     },
   };
 }

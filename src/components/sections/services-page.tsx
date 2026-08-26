@@ -11,7 +11,13 @@ import type { Service } from "@/types/content";
  * covers. The order is deliberate — the image is what carries the page, and
  * the words explain what you have just looked at.
  */
-function ServiceBlock({ service }: { readonly service: Service }) {
+function ServiceBlock({
+  service,
+  priority,
+}: {
+  readonly service: Service;
+  readonly priority: boolean;
+}) {
   return (
     <article>
       <Reveal distance={48}>
@@ -19,6 +25,7 @@ function ServiceBlock({ service }: { readonly service: Service }) {
           image={service.image}
           className="aspect-[16/9] w-full rounded-3xl"
           sizes="(min-width: 1024px) 69vw, 88vw"
+          priority={priority}
         />
       </Reveal>
 
@@ -61,8 +68,12 @@ export function ServicesPage() {
       <section className="pt-16 pb-28 lg:pt-24 lg:pb-40">
         <Container width="narrow">
           <div className="flex flex-col gap-28 lg:gap-40">
-            {services.map((service) => (
-              <ServiceBlock key={service.id} service={service} />
+            {services.map((service, index) => (
+              <ServiceBlock
+                key={service.id}
+                service={service}
+                priority={index === 0}
+              />
             ))}
           </div>
         </Container>

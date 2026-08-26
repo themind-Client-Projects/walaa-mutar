@@ -105,6 +105,7 @@ export function CourseDetail({ course }: { readonly course: Course }) {
                 image={course.image}
                 className="aspect-[4/3] w-full"
                 sizes="(min-width: 1024px) 47vw, 88vw"
+                priority
               />
             </Reveal>
 
